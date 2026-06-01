@@ -1,18 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 
-function SearchBar() {
+function SearchBar({ OnSurch }) {
+  const [inputeValue, setInputValue] = useState("");
+
+  function SubmitHandler(e) {
+    e.preventDefault();
+    OnSurch(inputeValue);
+
+    setInputValue("");
+  }
   return (
     // Form acts as the main wrapper. Using max-w to keep it looking good on large screens.
-    <form className="flex w-full max-w-sm mx-auto sm:max-w-md md:max-w-lg lg:max-w-xl bg-white rounded-full shadow-md overflow-hidden border border-gray-200 transition-shadow duration-300 focus-within:shadow-xl   ">
+    <form
+      onSubmit={SubmitHandler}
+      className="flex w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl mx-auto bg-white rounded-full shadow-md overflow-hidden border border-gray-200 transition-shadow duration-300 focus-within:shadow-xl items-center"
+    >
       <input
         type="text"
+        value={inputeValue}
+        onChange={(e) => setInputValue(e.target.value)}
         placeholder="Search City..."
-        className="flex-1 w-full px-5 py-3 sm:px-6 sm:py-4   text-gray-700 bg-transparent outline-none text-sm sm:text-base placeholder-gray-400"
+        required
+        className="flex-1 px-6 py-4 md:px-8 md:text-lg lg:px-10 lg:text-xl text-gray-700 bg-transparent outline-none placeholder-gray-400"
       />
 
       <button
         type="submit"
-        className="px-9 py-6 sm:px-8 sm:py-4 bg-gray-400  text-white font-bold text-sm sm:text-base transition-all duration-300 active:scale-100 ml-12 rounded-b-xl"
+        className="px-4 py-4 md:px-10 lg:px-12 bg-gray-400 text-white font-bold text-xl sm:text-base transition-all duration-300  active:scroll-auto h-full rounded-xl"
       >
         Search
       </button>
