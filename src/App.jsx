@@ -5,19 +5,37 @@ import WeatherCart from "./Components/WeatherCart";
 import { useState } from "react";
 
 function App() {
-  const [city, setCity] = useState("Boisar");
+  const [city, setCity] = useState("Palghar,Maharastra");
   const [temprechar, setTemprechar] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   // Naye States  for humidity and wind
   const [humidity, setHumidity] = useState(0);
   const [wind, setWind] = useState(0);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function getWeatherData() {
       try {
         setIsLoading(true);
-        // recvest to aip
+        setError(null);
+
+        if (!navigator.onLine) {
+          setError(
+            "Bro internet band hai! please chake your WI-FI or Mobile Data",
+          );
+          setIsLoading(false);
+
+          return;
+        }
+
+        if (city.trim().length < 2) {
+          setError("TypeError : please Add a Minimum 2 Latters...");
+          setIsLoading(false);
+          return;
+        }
+
+        // recvest to aip ko
         const responce = await fetch(`https://wttr.in/${city}?format=j1`);
 
         // conver to coming data in json format
@@ -38,8 +56,10 @@ function App() {
         setIsLoading(false);
       } catch (error) {
         // any regan internet is close and api is fail , so catch the error
+        setError(`${city} is not found`);
 
         console.log("Data fetch karne mein error aaya:", error);
+        setIsLoading(false);
       }
     }
     // i call the function getWeatherData();
@@ -59,8 +79,15 @@ function App() {
         <SearchBar OnSurch={handleCityUpdate} />
       </div>
       {/* for loading becouse data is slow rendring */}
-      {isLoading ? (
-        <div className="flex justify-center items-center h-64 w-full">
+      {error && (
+        <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mx-auto w-3xl max-w-sm sm:max-w-3xs sm:max-h-screen rounded-r-lg shadow-sm mt-64">
+          <p className="font-bold">Opps!</p>
+          <p>{error}</p>
+        </div>
+      )}
+
+      {isLoading && (
+        <div className="flex justify-center items-center h-64 w-full mt-64">
           {/* <h2 className="text-2xl font-bold text-gray-500">
             Data is Comming... ⏳
           </h2> */}
@@ -87,8 +114,10 @@ function App() {
             ></path>
           </svg>
         </div>
-      ) : (
-        <div className="flex justify-center items-center mt-10    ">
+      )}
+
+      {!error && !isLoading && (
+        <div className="flex justify-center items-center mt-10 ">
           <WeatherCart
             City={city}
             Temprecher={temprechar}

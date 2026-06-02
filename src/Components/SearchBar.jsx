@@ -22,6 +22,7 @@ function SearchBar({ OnSurch }) {
         placeholder="Search City..."
         required
         className="flex-1 px-6 py-4 md:px-8 md:text-lg lg:px-10 lg:text-xl text-gray-700 bg-transparent outline-none placeholder-gray-400"
+        maxLength={15}
       />
 
       <button

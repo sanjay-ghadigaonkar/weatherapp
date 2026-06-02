@@ -9,7 +9,7 @@ const WeatherCart = ({ City, Temprecher, Humidity, Wind }) => {
       {/* city icpme section  */}
 
       <div className="text-balance">
-        <h2 className="text-6xl font-extrabold text-gray-900  tracking-wider ">
+        <h2 className="text-2xl font-extrabold text-gray-900  tracking-wider ">
           {City}
         </h2>
         <div className="text-7xl my-6">☀️</div>
