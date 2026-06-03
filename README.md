@@ -1,16 +1,22 @@
-# React + Vite
+ 
+ # ⛅ Dynamic React Weather App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive and dynamic weather application built with React.js and Tailwind CSS. This project focuses on clean UI/UX, robust state management, and real-world edge case handling.
 
-Currently, two official plugins are available:
+🔗 **Live Demo: https://weathersampleapp.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🛠️ Tech Stack
+* **Frontend:** React.js, HTML5
+* **Styling:** Tailwind CSS
+* **API:** Fetch API (wttr.in)
 
-## React Compiler
+## ✨ Key Features & Technical Highlights
+* **Graceful Error Handling:** Implemented custom UI states for API failures and invalid location inputs.
+* **Network Connectivity Check:** Uses the native `navigator.onLine` API to detect offline status and prevent unnecessary API calls.
+* **Conditional Rendering:** Manages complex states (`isLoading`, `error`) to seamlessly switch between loading spinners, error messages, and the data view.
+* **Responsive Design:** Fully optimized for mobile and desktop screens using Tailwind's utility classes.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 How to Run Locally
+1. Clone the repository: `git clone https://github.com/sanjay-ghadigaonkar/weatherapp.git`
+2. Install dependencies: `npm install`
+3. Start the development server: `npm run dev`
