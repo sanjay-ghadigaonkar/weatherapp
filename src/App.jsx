@@ -5,7 +5,7 @@ import WeatherCart from "./Components/WeatherCart";
 import { useState } from "react";
 
 function App() {
-  const [city, setCity] = useState("Palghar,Maharastra");
+  const [city, setCity] = useState("Palghar");
   const [temprechar, setTemprechar] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -35,13 +35,13 @@ function App() {
           return;
         }
 
-        // recvest to aip ko
+        // recvest to aip
         const responce = await fetch(`https://wttr.in/${city}?format=j1`);
 
         // conver to coming data in json format
         const data = await responce.json();
 
-        console.log("pura api data", data);
+        // console.log("pura api data", data);
 
         //  json temprecher extract and update state
 
@@ -58,7 +58,7 @@ function App() {
         // any regan internet is close and api is fail , so catch the error
         setError(`${city} is not found`);
 
-        console.log("Data fetch karne mein error aaya:", error);
+        // console.log("Data fetch karne mein error aaya:", error);
         setIsLoading(false);
       }
     }

@@ -35,7 +35,9 @@ const WeatherCart = ({ City, Temprecher, Humidity, Wind }) => {
 
         <div className="flex flex-col items-center">
           <span className="text-sm text-gray-500 font-semibold">Wind</span>
-          <span className=" text-lg font-bold text-gray-700 mt-1">{Wind}</span>
+          <span className=" text-lg font-bold text-gray-700 mt-1">
+            {`${Wind}km/h`}
+          </span>
         </div>
       </div>
     </div>
